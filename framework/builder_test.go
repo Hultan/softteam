@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestNewBuilder(t *testing.T) {
+func TestBuilder_New(t *testing.T) {
 	gtk.Init(nil)
 
 	builder, err := NewBuilder("/home/per/code/softteam/assets/main.glade")
@@ -16,7 +16,7 @@ func TestNewBuilder(t *testing.T) {
 	assert.NotNil(t, builder)
 }
 
-func TestSoftBuilder_GetObject(t *testing.T) {
+func TestBuilder_GetObject(t *testing.T) {
 	gtk.Init(nil)
 
 	builder, err := NewBuilder("/home/per/code/softteam/assets/main.glade")

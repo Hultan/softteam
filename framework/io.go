@@ -9,10 +9,12 @@ type IO struct {
 
 }
 
+// NewIO : Creates a new IO type
 func NewIO() *IO {
 	return new(IO)
 }
 
+// FileExists : Checks if the specified file exists
 func (i *IO) FileExists(path string) bool {
 	if info, err := os.Stat(path); err == nil {
 		return !info.IsDir()
@@ -23,6 +25,7 @@ func (i *IO) FileExists(path string) bool {
 	}
 }
 
+// DirectoryExists : Checks if the specified directory exists
 func (i *IO) DirectoryExists(path string) bool {
 	info, err := os.Stat(path)
 	if os.IsNotExist(err) {
@@ -31,6 +34,7 @@ func (i *IO) DirectoryExists(path string) bool {
 	return info.IsDir()
 }
 
+// ReadAllText : Reads a text file and returns the content
 func (i *IO) ReadAllText(path string) (string, error) {
 	file, err := os.Open(path)
 	if err != nil {

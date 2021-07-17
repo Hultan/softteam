@@ -5,6 +5,11 @@ import (
 	"testing"
 )
 
+func TestIO_New(t *testing.T) {
+	io := NewIO()
+	assert.NotNil(t, io)
+}
+
 func TestIO_ExistingFile(t *testing.T) {
 	io := NewIO()
 	exists := io.FileExists("/home/per/code/softteam/assets/file")

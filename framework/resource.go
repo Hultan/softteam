@@ -8,16 +8,17 @@ import (
 	"runtime"
 )
 
-// Resources : Handles SoftTeam resources
-type Resources struct {
+// Resource : Handles SoftTeam resources
+type Resource struct {
 }
 
-func NewResources() *Resources {
-	return new(Resources)
+// NewResource : Creates a new Resources type
+func NewResource() *Resource {
+	return new(Resource)
 }
 
 // GetExecutableFile : Returns the path of the executable file
-func (r *Resources) GetExecutableFile() string {
+func (r *Resource) GetExecutableFile() string {
 	ex, err := os.Executable()
 	if err != nil {
 		return ""
@@ -26,18 +27,18 @@ func (r *Resources) GetExecutableFile() string {
 }
 
 // GetExecutablePath : Returns the directory of the executable file
-func (r *Resources) GetExecutablePath() string {
+func (r *Resource) GetExecutablePath() string {
 	return filepath.Dir(r.GetExecutableFile())
 }
 
 // GetResourcePath : Gets the path for a single resource file
-func (r *Resources) GetResourcePath(fileName string) string {
+func (r *Resource) GetResourcePath(fileName string) string {
 	resourcesPath := r.GetResourcesPath()
 	resourcePath := path.Join(resourcesPath, fileName)
 	return resourcePath
 }
 
-func (r *Resources) GetUserHomeDirectory() string {
+func (r *Resource) GetUserHomeDirectory() string {
 	if runtime.GOOS == "windows" {
 		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
 		if home == "" {
@@ -54,7 +55,7 @@ func (r *Resources) GetUserHomeDirectory() string {
 }
 
 // GetResourcesPath : Returns the resources path
-func (r *Resources) GetResourcesPath() string {
+func (r *Resource) GetResourcesPath() string {
 	executablePath := r.GetExecutablePath()
 
 	var pathsToCheck []string
@@ -68,7 +69,8 @@ func (r *Resources) GetResourcesPath() string {
 	return dir
 }
 
-func (r *Resources) checkPathsExists(pathsToCheck []string) (string, error) {
+// checkPathsExists : Returns the first path that exists
+func (r *Resource) checkPathsExists(pathsToCheck []string) (string, error) {
 	io := NewIO()
 	for _, pathToCheck := range pathsToCheck {
 		if io.DirectoryExists(pathToCheck) {

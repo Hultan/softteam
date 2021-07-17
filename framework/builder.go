@@ -9,6 +9,7 @@ type Builder struct {
 	Builder        *gtk.Builder
 }
 
+// NewBuilder : Create a new Builder type, and opens the file specified
 func NewBuilder(fileNameOrPath string) (*Builder, error) {
 	builder := new(Builder)
 	err := builder.createBuilder(fileNameOrPath)
@@ -18,10 +19,11 @@ func NewBuilder(fileNameOrPath string) (*Builder, error) {
 	return builder, nil
 }
 
+// createBuilder : Creates the actual gtk.Builder
 func (s *Builder) createBuilder(fileNameOrPath string) error {
 	io := NewIO()
 	if !io.FileExists(fileNameOrPath) {
-		resource := NewResources()
+		resource := NewResource()
 		fileNameOrPath = resource.GetResourcePath(fileNameOrPath)
 	}
 
@@ -34,6 +36,7 @@ func (s *Builder) createBuilder(fileNameOrPath string) error {
 	return nil
 }
 
+// GetObject : Gets a gtk object by name
 func (s *Builder) GetObject(name string) glib.IObject {
 	obj, err := s.Builder.GetObject(name)
 	if err != nil {
