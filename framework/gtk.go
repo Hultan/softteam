@@ -1,13 +1,10 @@
 package framework
 
 import (
-	"errors"
-	"github.com/gotk3/gotk3/glib"
 	"github.com/gotk3/gotk3/gtk"
 )
 
 type GTK struct {
-	Builder *gtk.Builder
 }
 
 // ClearListBox : Clears a gtk.ListBox
@@ -39,7 +36,7 @@ func (g *GTK) ClearFlowBox(list *gtk.FlowBox) {
 }
 
 // CreateBuilder : Creates the actual gtk.Builder
-func (g *GTK) CreateBuilder(fileNameOrPath string) error {
+func (g *GTK) CreateBuilder(fileNameOrPath string) (*GtkBuilder, error) {
 	fw := NewFramework()
 	if !fw.IO.FileExists(fileNameOrPath) {
 		fileNameOrPath = fw.Resource.GetResourcePath(fileNameOrPath)
@@ -47,22 +44,8 @@ func (g *GTK) CreateBuilder(fileNameOrPath string) error {
 
 	builder, err := gtk.BuilderNewFromFile(fileNameOrPath)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	g.Builder = builder
-	return nil
-}
-
-// GetObject : Gets a gtk object by name
-func (g *GTK) GetObject(name string) glib.IObject {
-	if g.Builder == nil {
-		panic(errors.New("need to call CreateBuilder first"))
-	}
-	obj, err := g.Builder.GetObject(name)
-	if err != nil {
-		panic(err)
-	}
-
-	return obj
+	return &GtkBuilder{builder}, nil
 }
