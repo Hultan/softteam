@@ -11,10 +11,6 @@ import (
 type Process struct {
 }
 
-func NewProcess() *Process {
-	return new(Process)
-}
-
 // OpenInTerminal : Opens a new terminal with path as its current directory
 func (p *Process) OpenInTerminal(path string) {
 	p.Open("gnome-terminal", "--working-directory="+path)

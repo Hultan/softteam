@@ -9,11 +9,6 @@ type IO struct {
 
 }
 
-// NewIO : Creates a new IO type
-func NewIO() *IO {
-	return new(IO)
-}
-
 // FileExists : Checks if the specified file exists
 func (i *IO) FileExists(path string) bool {
 	if info, err := os.Stat(path); err == nil {

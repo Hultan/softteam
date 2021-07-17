@@ -6,9 +6,22 @@ import (
 	"testing"
 )
 
-func TestNewGTK(t *testing.T) {
-	gtk := NewGTK()
-	assert.NotNil(t, gtk)
+func TestGtk_GetObject(t *testing.T) {
+	gtk.Init(nil)
+
+	fw := NewFramework()
+	builder, err := fw.Gtk.CreateBuilder("/home/per/code/softteam/assets/main.glade")
+	if err != nil {
+		assert.Fail(t, err.Error())
+	}
+	assert.NotNil(t, builder)
+	window := fw.Gtk.GetObject("mainWindow").(*gtk.Window)
+	assert.NotNil(t, window)
+	name, err := window.GetName()
+	if err != nil {
+		assert.Fail(t, err.Error())
+	}
+	assert.Equal(t, "Main Window", name)
 }
 
 func TestGTK_ClearListBox(t *testing.T) {
@@ -38,8 +51,8 @@ func TestGTK_ClearListBox(t *testing.T) {
 	}
 	listBox.Add(label3)
 
-	g := NewGTK()
-	g.ClearListBox(listBox)
+	fw := NewFramework()
+	fw.Gtk.ClearListBox(listBox)
 	children := listBox.GetChildren()
 	assert.Equal(t, uint(0), children.Length())
 }
@@ -71,8 +84,8 @@ func TestGTK_ClearFlowBox(t *testing.T) {
 	}
 	flowBox.Add(label3)
 
-	g := NewGTK()
-	g.ClearFlowBox(flowBox)
+	fw := NewFramework()
+	fw.Gtk.ClearFlowBox(flowBox)
 	children := flowBox.GetChildren()
 	assert.Equal(t, uint(0), children.Length())
 }

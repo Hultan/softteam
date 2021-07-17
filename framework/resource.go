@@ -12,11 +12,6 @@ import (
 type Resource struct {
 }
 
-// NewResource : Creates a new Resources type
-func NewResource() *Resource {
-	return new(Resource)
-}
-
 // GetExecutableFile : Returns the path of the executable file
 func (r *Resource) GetExecutableFile() string {
 	ex, err := os.Executable()
@@ -71,9 +66,9 @@ func (r *Resource) GetResourcesPath() string {
 
 // checkPathsExists : Returns the first path that exists
 func (r *Resource) checkPathsExists(pathsToCheck []string) (string, error) {
-	io := NewIO()
+	fw := NewFramework()
 	for _, pathToCheck := range pathsToCheck {
-		if io.DirectoryExists(pathToCheck) {
+		if fw.IO.DirectoryExists(pathToCheck) {
 			return pathToCheck, nil
 		}
 	}

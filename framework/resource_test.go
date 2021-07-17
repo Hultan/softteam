@@ -6,38 +6,33 @@ import (
 	"testing"
 )
 
-func TestResources_New(t *testing.T) {
-	resource := NewResource()
-	assert.NotNil(t, resource)
-}
-
 func TestResources_GetExecutableFile(t *testing.T) {
-	resource := NewResource()
-	path := resource.GetExecutableFile()
+	fw := NewFramework()
+	path := fw.Resource.GetExecutableFile()
 	dir := filepath.Dir(path)
 	assert.Equal(t, "/tmp", dir)
 }
 
 func TestResources_GetExecutablePath(t *testing.T) {
-	resource := NewResource()
-	path := resource.GetExecutablePath()
+	fw := NewFramework()
+	path := fw.Resource.GetExecutablePath()
 	assert.Equal(t, "/tmp", path)
 }
 
 func TestResources_GetResourcePath(t *testing.T) {
-	resource := NewResource()
-	path := resource.GetResourcePath("test")
+	fw := NewFramework()
+	path := fw.Resource.GetResourcePath("test")
 	assert.Equal(t, "/tmp/test", path)
 }
 
 func TestResources_GetResourcesPath(t *testing.T) {
-	resource := NewResource()
-	path := resource.GetResourcesPath()
+	fw := NewFramework()
+	path := fw.Resource.GetResourcesPath()
 	assert.Equal(t, "/tmp", path)
 }
 
 func TestResources_GetUserHomeDirectory(t *testing.T) {
-	resource := NewResource()
-	home := resource.GetUserHomeDirectory()
+	fw := NewFramework()
+	home := fw.Resource.GetUserHomeDirectory()
 	assert.Equal(t, "/home/per", home)
 }

@@ -4,11 +4,6 @@ type Slice struct {
 
 }
 
-// NewSlice : Creates a new Slice type
-func NewSlice() *Slice {
-	return new(Slice)
-}
-
 // ContainsInt : Returns true if the slice contains the integer
 //               in find. Otherwise returns false.
 func (s *Slice) ContainsInt(slice []int, find int) bool {

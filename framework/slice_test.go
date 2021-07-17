@@ -5,57 +5,52 @@ import (
 	"testing"
 )
 
-func TestSlice_New(t *testing.T) {
-	slice := NewSlice()
-	assert.NotNil(t, slice)
-}
-
 func TestSlice_ContainsInt(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []int{23,12,45,26,74}
-	result := slice.ContainsInt(data, 23)
+	result := fw.Slice.ContainsInt(data, 23)
 	assert.True(t, result)
-	result = slice.ContainsInt(data, 24)
+	result = fw.Slice.ContainsInt(data, 24)
 	assert.False(t, result)
 }
 
 func TestSlice_ContainsString(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []string{"per", "fredrik", "joakim"}
-	result := slice.ContainsString(data, "joakim")
+	result := fw.Slice.ContainsString(data, "joakim")
 	assert.True(t, result)
-	result = slice.ContainsString(data, "apple")
+	result = fw.Slice.ContainsString(data, "apple")
 	assert.False(t, result)
 }
 
 func TestSlice_RemoveIntAt(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []int{23,12,45,26,74}
-	data = slice.RemoveIntAt(data, 0)
-	result := slice.ContainsInt(data, 23)
+	data = fw.Slice.RemoveIntAt(data, 0)
+	result := fw.Slice.ContainsInt(data, 23)
 	assert.False(t, result)
 }
 
 func TestSlice_RemoveStringAt(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []string{"per", "fredrik", "joakim"}
-	data = slice.RemoveStringAt(data, 1)
-	result := slice.ContainsString(data, "fredrik")
+	data = fw.Slice.RemoveStringAt(data, 1)
+	result := fw.Slice.ContainsString(data, "fredrik")
 	assert.False(t, result)
 }
 
 func TestSlice_RemoveIntAtFast(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []int{23,12,45,26,74}
-	data = slice.RemoveIntAtFast(data, 0)
-	result := slice.ContainsInt(data, 23)
+	data = fw.Slice.RemoveIntAtFast(data, 0)
+	result := fw.Slice.ContainsInt(data, 23)
 	assert.False(t, result)
 }
 
 func TestSlice_RemoveStringAtFast(t *testing.T) {
-	slice := NewSlice()
+	fw := NewFramework()
 	data := []string{"per", "fredrik", "joakim"}
-	data = slice.RemoveStringAtFast(data, 1)
-	result := slice.ContainsString(data, "fredrik")
+	data = fw.Slice.RemoveStringAtFast(data, 1)
+	result := fw.Slice.ContainsString(data, "fredrik")
 	assert.False(t, result)
 }
