@@ -39,7 +39,7 @@ func (g *GTK) ClearFlowBox(list *gtk.FlowBox) {
 }
 
 // CreateBuilder : Creates the actual gtk.Builder
-func (g *GTK) CreateBuilder(fileNameOrPath string) (*gtk.Builder, error) {
+func (g *GTK) CreateBuilder(fileNameOrPath string) error {
 	fw := NewFramework()
 	if !fw.IO.FileExists(fileNameOrPath) {
 		fileNameOrPath = fw.Resource.GetResourcePath(fileNameOrPath)
@@ -47,11 +47,11 @@ func (g *GTK) CreateBuilder(fileNameOrPath string) (*gtk.Builder, error) {
 
 	builder, err := gtk.BuilderNewFromFile(fileNameOrPath)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	g.Builder = builder
-	return builder, nil
+	return nil
 }
 
 // GetObject : Gets a gtk object by name

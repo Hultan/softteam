@@ -10,11 +10,10 @@ func TestGtk_GetObject(t *testing.T) {
 	gtk.Init(nil)
 
 	fw := NewFramework()
-	builder, err := fw.Gtk.CreateBuilder("/home/per/code/softteam/assets/main.glade")
+	err := fw.Gtk.CreateBuilder("/home/per/code/softteam/assets/main.glade")
 	if err != nil {
 		assert.Fail(t, err.Error())
 	}
-	assert.NotNil(t, builder)
 	window := fw.Gtk.GetObject("mainWindow").(*gtk.Window)
 	assert.NotNil(t, window)
 	name, err := window.GetName()
