@@ -24,3 +24,17 @@ func (g *GTK) ClearListBox(list *gtk.ListBox) {
 		i++
 	}
 }
+
+// ClearFlowBox : Clears a gtk.FlowBox
+func (g *GTK) ClearFlowBox(list *gtk.FlowBox) {
+	children := list.GetChildren()
+	if children == nil {
+		return
+	}
+	var i uint = 0
+	for ; i < children.Length(); {
+		widget, _ := children.NthData(i).(*gtk.Widget)
+		list.Remove(widget)
+		i++
+	}
+}
