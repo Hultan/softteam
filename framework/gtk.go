@@ -4,11 +4,11 @@ import (
 	"github.com/gotk3/gotk3/gtk"
 )
 
-type GTK struct {
+type Gtk struct {
 }
 
 // ClearListBox : Clears a gtk.ListBox
-func (g *GTK) ClearListBox(list *gtk.ListBox) {
+func (g *Gtk) ClearListBox(list *gtk.ListBox) {
 	children := list.GetChildren()
 	if children == nil {
 		return
@@ -22,7 +22,7 @@ func (g *GTK) ClearListBox(list *gtk.ListBox) {
 }
 
 // ClearFlowBox : Clears a gtk.FlowBox
-func (g *GTK) ClearFlowBox(list *gtk.FlowBox) {
+func (g *Gtk) ClearFlowBox(list *gtk.FlowBox) {
 	children := list.GetChildren()
 	if children == nil {
 		return
@@ -36,7 +36,7 @@ func (g *GTK) ClearFlowBox(list *gtk.FlowBox) {
 }
 
 // CreateBuilder : Creates the actual gtk.Builder
-func (g *GTK) CreateBuilder(fileNameOrPath string) (*GtkBuilder, error) {
+func (g *Gtk) CreateBuilder(fileNameOrPath string) (*GtkBuilder, error) {
 	fw := NewFramework()
 	if !fw.IO.FileExists(fileNameOrPath) {
 		fileNameOrPath = fw.Resource.GetResourcePath(fileNameOrPath)
