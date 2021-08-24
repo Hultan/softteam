@@ -1,8 +1,6 @@
 package framework
 
 import (
-	"bytes"
-	"fmt"
 	"log"
 	"os/exec"
 	"syscall"
@@ -27,7 +25,7 @@ func (p *Process) OpenInGoland(path string) {
 }
 
 // Open : Opens a command with the specified arguments
-func (p *Process) Open(command string, args ...string) {
+func (p *Process) Open(command string, args ...string) string {
 
 	cmd := exec.Command(command, args...)
 	// Forces the new process to detach from the GitDiscover process
@@ -36,16 +34,11 @@ func (p *Process) Open(command string, args ...string) {
 		Setpgid: true,
 	}
 
-	// set var to get the output
-	var out bytes.Buffer
-
-	// set the output to our variable
-	cmd.Stdout = &out
-	err := cmd.Start()
+	output, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Println(err)
 	}
 	cmd.Process.Release()
 
-	fmt.Println(out.String())
+	return string(output)
 }
