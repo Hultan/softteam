@@ -25,6 +25,8 @@ type credentials struct {
 	Password    string
 }
 
+const constHostName = "33bd59656b35b6e4744d51a7efcf102ad09ca128b4897035502dd214a8ca3d24655877f1c8ac7227e2dc6b74"
+const constEmail = "a477933f99029dbd07c31b58c1ebabae87338c0372d594d3cc7220ed32404ed6b018815b"
 const constPassword = "600189099c094d21a95c0ed6f25b70a8e5fbe25128d9e0af44c54086124849532e481633930f88148e4d7d32"
 
 func (m *MailSender) getCredentials() (*credentials, error) {
@@ -33,11 +35,20 @@ func (m *MailSender) getCredentials() (*credentials, error) {
 	if err != nil {
 		return nil, err
 	}
+	hostName, err := crypto.Decrypt(constHostName)
+	if err != nil {
+		return nil, err
+	}
+	email, err := crypto.Decrypt(constEmail)
+	if err != nil {
+		return nil, err
+	}
+
 	return &credentials{
-		HostName:    "akilles.oderland.com",
+		HostName:    hostName,
 		Port:        465,
-		FromAddress: "per@softteam.se",
-		Name:        "per@softteam.se",
+		FromAddress: email,
+		Name:        email,
 		Password:    password,
 	}, nil
 }
