@@ -1,6 +1,6 @@
 package framework
 
-const applicationVersion = "1.2.5"
+const applicationVersion = "1.2.7"
 
 type Framework struct {
 	Gtk      *Gtk

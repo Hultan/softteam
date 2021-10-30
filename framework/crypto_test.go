@@ -11,7 +11,7 @@ import (
 // 	fw := NewFramework()
 //
 // 	encrypted, err := fw.Crypto.Encrypt("Per Hultqvist")
-// 	assert.Nil(t, err)
+// 	assert.Nil(t, err)<
 // 	assert.Equal(t, "17efd7c819007d79c9a1c287163b77ea2549a7255dc913b93c3d3a9e4ca975b7c35829ef", encrypted)
 // }
 

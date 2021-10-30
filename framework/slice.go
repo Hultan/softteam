@@ -5,7 +5,7 @@ type Slice struct {
 }
 
 // ContainsInt : Returns true if the slice contains the integer
-//               in find. Otherwise returns false.
+//               in find, otherwise returns false.
 func (s *Slice) ContainsInt(slice []int, find int) bool {
 	for _, a := range slice {
 		if a == find {
@@ -13,6 +13,17 @@ func (s *Slice) ContainsInt(slice []int, find int) bool {
 		}
 	}
 	return false
+}
+
+// IndexOfInt : Returns the index if the slice contains the integer
+//              in find, otherwise returns -1.
+func (s *Slice) IndexOfInt(slice []int, find int) int {
+	for i, a := range slice {
+		if a == find {
+			return i
+		}
+	}
+	return -1
 }
 
 // RemoveIntAt : Removes the integer at the specified index
@@ -39,6 +50,17 @@ func (s *Slice) ContainsString(slice []string, find string) bool {
 		}
 	}
 	return false
+}
+
+// IndexOfString : Returns index if the slice contains the string
+//                 in find, otherwise returns -1.
+func (s *Slice) IndexOfString(slice []string, find string) int {
+	for i, a := range slice {
+		if a == find {
+			return i
+		}
+	}
+	return -1
 }
 
 // RemoveStringAt : Removes the string at the specified index
