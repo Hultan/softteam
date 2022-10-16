@@ -101,7 +101,10 @@ func (m *MailSender) SendMail(mailMessage MailMessage) error {
 		return err
 	}
 
-	client.Quit()
+	err = client.Quit()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

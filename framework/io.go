@@ -1,12 +1,11 @@
 package framework
 
 import (
-	"io/ioutil"
+	"io"
 	"os"
 )
 
 type IO struct {
-
 }
 
 // FileExists : Checks if the specified file exists
@@ -22,11 +21,13 @@ func (i *IO) FileExists(path string) bool {
 
 // DirectoryExists : Checks if the specified directory exists
 func (i *IO) DirectoryExists(path string) bool {
-	info, err := os.Stat(path)
-	if os.IsNotExist(err) {
+	if info, err := os.Stat(path); err == nil {
+		return info.IsDir()
+	} else if os.IsNotExist(err) {
+		return false
+	} else {
 		return false
 	}
-	return info.IsDir()
 }
 
 // ReadAllText : Reads a text file and returns the content
@@ -36,7 +37,7 @@ func (i *IO) ReadAllText(path string) (string, error) {
 		return "", err
 	}
 
-	bytes, err := ioutil.ReadAll(file)
+	bytes, err := io.ReadAll(file)
 
 	if err = file.Close(); err != nil {
 		return "", err
@@ -44,5 +45,3 @@ func (i *IO) ReadAllText(path string) (string, error) {
 
 	return string(bytes), nil
 }
-
-

@@ -5,7 +5,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"runtime"
 )
 
 // Resource : Handles SoftTeam resources
@@ -34,18 +33,11 @@ func (r *Resource) GetResourcePath(fileName string) string {
 }
 
 func (r *Resource) GetUserHomeDirectory() string {
-	if runtime.GOOS == "windows" {
-		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
-		if home == "" {
-			home = os.Getenv("USERPROFILE")
-		}
+	home := os.Getenv("XDG_CONFIG_HOME")
+	if home != "" {
 		return home
-	} else if runtime.GOOS == "linux" {
-		home := os.Getenv("XDG_CONFIG_HOME")
-		if home != "" {
-			return home
-		}
 	}
+
 	return os.Getenv("HOME")
 }
 

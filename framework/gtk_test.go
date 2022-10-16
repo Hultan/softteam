@@ -1,9 +1,10 @@
 package framework
 
 import (
+	"testing"
+
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestGtk_GetObject(t *testing.T) {

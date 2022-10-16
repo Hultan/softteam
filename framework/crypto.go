@@ -9,7 +9,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 )
@@ -28,7 +27,7 @@ func getKey() []byte {
 	}
 
 	// Read file
-	b, err := ioutil.ReadAll(file)
+	b, err := io.ReadAll(file)
 	if err != nil {
 		log.Fatal(err)
 	}

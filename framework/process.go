@@ -38,7 +38,10 @@ func (p *Process) Open(command string, args ...string) string {
 	if err != nil {
 		log.Println(err)
 	}
-	cmd.Process.Release()
+	err = cmd.Process.Release()
+	if err != nil {
+		log.Println(err)
+	}
 
 	return string(output)
 }

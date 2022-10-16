@@ -1,8 +1,9 @@
 package framework
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIO_ExistingFile(t *testing.T) {
