@@ -11,6 +11,7 @@ type Framework struct {
 	Error    *Error
 	Crypto   *Crypto
 	Mail     *MailSender
+	Log      *Log
 }
 
 func NewFramework() *Framework {
@@ -24,6 +25,7 @@ func NewFramework() *Framework {
 	framework.Error = &Error{}
 	framework.Mail = &MailSender{}
 	framework.Crypto = &Crypto{}
+	framework.Log = &Log{}
 
 	return framework
 }
