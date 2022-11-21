@@ -15,6 +15,8 @@ type Logger struct {
 	Info    *log.Logger
 	Warning *log.Logger
 	Error   *log.Logger
+
+	logFile *os.File
 }
 
 const constMaxLogFileSize = 500000
@@ -28,8 +30,13 @@ func (l *Log) NewStandardLogger(path string) (*Logger, error) {
 	}
 
 	logger.initLogging(io.Discard, logFile, logFile, logFile)
+	logger.logFile = logFile
 
 	return logger, nil
+}
+
+func (l *Logger) Close() {
+	_ = l.logFile.Close()
 }
 
 func (l *Logger) getLogFile() (*os.File, error) {
