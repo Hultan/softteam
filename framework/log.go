@@ -47,7 +47,7 @@ func (l *Logger) getLogFile() (*os.File, error) {
 	if size > constMaxLogFileSize {
 		// Remove old bak file
 		err := os.Remove(l.Path + ".bak")
-		if !errors.Is(err, os.ErrNotExist) {
+		if err != nil && !errors.Is(err, os.ErrNotExist) {
 			return nil, err
 		}
 		// Rename log file to log file.bak
